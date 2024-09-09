@@ -1,72 +1,167 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-header {
-    text-align: center;
-}
-
-.game-area {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.player-area {
-    flex: 1;
-    margin: 0 10px;
-    padding: 10px;
-    background: #e9ecef;
-    border-radius: 8px;
-}
-
-.cards {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.card {
-    width: 50px;
-    height: 70px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    margin: 0 5px;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    font-size: 24px;
+    height: 100vh;
+    background-image: url('images/forest_background.jpg'); /* Путь к изображению леса */
+    background-size: cover; /* Полное покрытие фона */
+    background-position: center; /* Центрирование изображения */
+    font-family: Arial, sans-serif;
+    color: white; /* Цвет текста */
 }
 
-.chat-area {
-    margin-top: 20px;
+h1 {
+    color: #4CAF50;
 }
 
-.messages {
-    border: 1px solid #ccc;
-    height: 150px;
-    overflow-y: auto;
-    padding: 10px;
-    margin-bottom: 10px;
+#setup-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #4CAF50; /* Зеленая рамка */
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Увеличена ширина */
+}
+
+button {
+    padding: 10px 15px; /* Увеличены размеры кнопок */
+    font-size: 16px; /* Увеличен размер шрифта */
+    margin: 5px; /* Отступы между кнопками */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049; /* Цвет кнопки при наведении */
+}
+
+/* Стили для карт */
+.cards-container {
+    display: flex;
+    justify-content: center; /* Центрирование карт */
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.card, .opponent-card {
+    width: 60px;
+    height: 90px;
+    margin: 5px;
+    background-color: white; /* Белый цвет карты */
+    border: 1px solid #4CAF50; /* Зеленая рамка */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card.red {
+    color: red; /* Красный цвет для червей и бубей */
+}
+
+.card.black {
+    color: black; /* Черный цвет для крести и пики */
+}
+
+/* Стили для мастей и достоинств */
+.card .rank, .card .suit {
+    position: absolute;
+    font-size: 20px;
+}
+
+.card .rank {
+    top: 5px;
+    left: 5px;
+}
+
+.card .suit {
+    bottom: 5px;
+    right: 5px;
+}
+
+.opponent-card {
+    background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачные карты противников */
+}
+
+/* Стили для колоды */
+#deck-container {
+    font-size: 18px;
+    margin: 10px;
+}
+
+/* Стили для чата */
+#chat-container {
+    display: flex;
+    margin: 10px;
 }
 
 #chat-input {
-    width: calc(100% - 100px);
-    padding: 10px;
+    width: 200px;
+    padding: 5px;
 }
 
-#send-button {
+#send-chat {
+    padding: 5px;
+}
+
+#chat-box {
+    width: 100%;
+    height: 100px;
+    overflow-y: auto;
+    border: 1px solid #4CAF50;
+    background-color: white;
+    color: black;
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Остается на месте */
+    z-index: 1; /* Поверх всего */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Включить прокрутку, если необходимо */
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный черный фон */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% сверху и центрирование */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ширина */
+    max-width: 600px; /* Максимальная ширина */
+    border-radius: 8px; /* Закругленные углы */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Стили для колоды */
+#deck-container {
+    font-size: 18px;
+    margin: 10px;
+    background-color: #f0e68c; /* Цвет колоды */
     padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer; /* Указатель при наведении */
 }

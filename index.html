@@ -3,34 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сундучок - Игра</title>
+    <title>Игра "Сундучок"</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Сундучок</h1>
-        </header>
-        <main>
-            <div class="game-area">
-                <div class="player-area" id="player1">
-                    <h2>Игрок 1</h2>
-                    <div class="cards" id="player1-cards"></div>
-                    <div class="score" id="player1-score">Очки: 0</div>
-                </div>
-                <div class="player-area" id="player2">
-                    <h2>Игрок 2</h2>
-                    <div class="cards" id="player2-cards"></div>
-                    <div class="score" id="player2-score">Очки: 0</div>
-                </div>
-            </div>
-            <div class="chat-area">
-                <h2>Чат</h2>
-                <div class="messages" id="chat-messages"></div>
-                <input type="text" id="chat-input" placeholder="Введите сообщение...">
-                <button id="send-button">Отправить</button>
-            </div>
-        </main>
+    <h1>Игра "Сундучок"</h1>
+    <div id="setup-container">
+        <label for="player-name">Введите ваше имя:</label>
+        <input type="text" id="player-name" placeholder="Имя игрока" required>
+        <br>
+        <label for="player-count">Выберите количество игроков:</label>
+        <select id="player-count">
+            <option value="2">2 игрока</option>
+            <option value="3">3 игрока</option>
+            <option value="4">4 игрока</option>
+        </select>
+        <br>
+        <button id="create-room">Создать комнату</button>
+        <button id="play-against-ai">Играть против AI</button>
+        <button id="rules-button">Правила игры</button>
+    </div>
+    <div id="game-container" style="display: none;">
+        <h2 id="game-time">Время игры: 0 секунд</h2>
+        <div id="players-names"></div>
+        <div id="current-players">Сейчас в игре: <span id="player-list"></span></div>
+        <div id="deck-container"></div>
+        <div id="opponent-cards" class="cards-container"></div>
+        <div id="player-cards" class="cards-container"></div>
+        <div id="chat-container">
+            <input type="text" id="chat-input" placeholder="Введите сообщение...">
+            <button id="send-chat">Отправить</button>
+        </div>
+        <div id="chat-box"></div>
+    </div>
+    <div id="game-container" style="display: none;">
+        <h2 id="game-time">Время игры: 0 секунд</h2>
+        <div id="players-names"></div>
+        <div id="deck-container"></div>
+        <div id="opponent-cards" class="cards-container"></div>
+        <div id="player-cards" class="cards-container"></div>
+        <div id="chat-container">
+            <input type="text" id="chat-input" placeholder="Введите сообщение...">
+            <button id="send-chat">Отправить</button>
+        </div>
+        <div id="chat-box"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Правила игры "Сундучок"</h2>
+            <p>Цель игры — накопить больше четвёрок карт одного достоинства, называемых "сундучками".</p>
+            <h3>Игроки</h3>
+            <p>Игра может быть сыграна от 2 до 4 игроков или против AI.</p>
+            <h3>Начало игры</h3>
+            <p>1. Подготовка колоды: Используйте стандартную колоду из 36 или 54 карт. Перетасуйте карты.</p>
+            <p>2. Раздача карт: Каждому игроку раздаётся по 5 карт. Оставшиеся карты образуют стопку для добора.</p>
+            <h3>Ход игры</h3>
+            <p>1. Игроки по очереди выбирают карты из своей руки и проверяют, есть ли у противников соответствующие карты.</p>
+            <p>2. Если у противника есть карты запрашиваемого достоинства, он должен отдать все карты этого достоинства.</p>
+            <h3>Сундучки</h3>
+            <p>Когда у игрока накапливается 4 карты одного достоинства, он должен выложить их с руки, показывая или нет, какое достоинство собрано в "сундучок".</p>
+            <h3>Окончание игры</h3>
+            <p>Игра продолжается до тех пор, пока один из игроков не соберёт достаточное количество "сундучков", чтобы выиграть.</p>
+            <h3>Победитель</h3>
+            <p>Победителем становится игрок, который первым соберёт нужное количество "сундучков".</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
